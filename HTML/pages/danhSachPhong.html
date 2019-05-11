@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Quản lý phòng trọ</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- MetisMenu CSS -->
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div id="wrapper">
+        <!-- Navigation -->
+         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+               
+                <a class="navbar-brand" href="trangChu.html">Quản Lý Phòng Trọ</a>
+            </div>
+            <!-- /.navbar-header -->
+                       <!-- /.navbar-top-links -->
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                            <!-- /input-group -->
+                        </li>
+                        <li>
+                            <a href="trangChu.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-table fa-fw"></i> Phòng trọ<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="themPhong.html">Thêm mới</a>
+                                </li>
+                                <li>
+                                    <a href="danhSachPhong.html">Danh sách</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-table fa-fw"></i>Khách hàng<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="themKhachHang.html">Thêm mới</a>
+                                </li>
+                                <li>
+                                    <a href="danhSachKhachHang.html">Danh sách</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-edit fa-fw"></i>Hợp đồng<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="themHopDong.html">Thêm mới</a>
+                                </li>
+                                <li>
+                                    <a href="danhSachHopDong.html">Danh sách</a>
+                                </li>
+                            </ul>
+
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i>Hóa đơn<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="themHoaDon.html">Thêm mới</a>
+                                </li>
+                                <li>
+                                    <a href="danhSachHoaDon.html">Danh sách</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-edit fa-fw"></i>Kỷ luật<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="themKyluat.html">Thêm mới</a>
+                                </li>
+                                <li>
+                                    <a href="danhSachKyLuat.html">Danh sách</a>
+                                </li>
+                            </ul>
+
+                        </li> <li>
+                            <a href="#"><i class="fa fa-edit fa-fw"></i>Thiết bị<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="themThietBi.html">Thêm mới</a>
+                                </li>
+                                <li>
+                                    <a href="danhSachThietBi.html">Danh sách</a>
+                                </li>
+                            </ul>
+
+                        </li> 
+
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Danh sách phòng trọ</h1>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        Danh sách
+                                    </div>
+                                    <!-- /.panel-heading -->
+                                    <div class="panel-body">
+                                        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                            <thead>
+                                                <tr>
+                                                    <th>STT</th>
+                                                    <th>Tên Phòng</th>
+                                                    <th>Giá phòng</th>
+                                                    <th>Diện tích</th>
+                                                    <th>Số lượng người</th>
+                                                    <th>Hình ảnh</th>
+                                                    <th>Loại phòng</th>
+                                                    <th>Ghi chú</th>
+                                                </tr>
+                                            
+                                            <tbody>
+                                                <tr class="odd gradeX">
+                                                    <td>1</td>
+                                                    <td>P101</td>
+                                                    <td>1000.000</td>
+                                                    <td>20m2</td>
+                                                    <td>2</td>
+                                                    <td>  </td>
+                                                    <td>Khép kín</td>
+                                                    <td></td>
+                                                </tr>
+                                                  <tr class="odd gradeX">
+                                                    <td>1</td>
+                                                    <td>P101</td>
+                                                    <td>1000.000</td>
+                                                    <td>20m2</td>
+                                                    <td>2</td>
+                                                    <td>  </td>
+                                                    <td>Khép kín</td>
+                                                    <td></td>
+                                                </tr>  <tr class="odd gradeX">
+                                                    <td>1</td>
+                                                    <td>P101</td>
+                                                    <td>1000.000</td>
+                                                    <td>20m2</td>
+                                                    <td>2</td>
+                                                    <td>  </td>
+                                                    <td>Khép kín</td>
+                                                    <td></td>
+                                                </tr>  <tr class="odd gradeX">
+                                                    <td>1</td>
+                                                    <td>P101</td>
+                                                    <td>1000.000</td>
+                                                    <td>20m2</td>
+                                                    <td>2</td>
+                                                    <td>  </td>
+                                                    <td>Khép kín</td>
+                                                    <td></td>
+                                                </tr>  <tr class="odd gradeX">
+                                                    <td>1</td>
+                                                    <td>P101</td>
+                                                    <td>1000.000</td>
+                                                    <td>20m2</td>
+                                                    <td>2</td>
+                                                    <td>  </td>
+                                                    <td>Khép kín</td>
+                                                    <td></td>
+                                                </tr>  <tr class="odd gradeX">
+                                                    <td>1</td>
+                                                    <td>P101</td>
+                                                    <td>1000.000</td>
+                                                    <td>20m2</td>
+                                                    <td>2</td>
+                                                    <td>  </td>
+                                                    <td>Khép kín</td>
+                                                    <td></td>
+                                                </tr>  <tr class="odd gradeX">
+                                                    <td>1</td>
+                                                    <td>P101</td>
+                                                    <td>1000.000</td>
+                                                    <td>20m2</td>
+                                                    <td>2</td>
+                                                    <td>  </td>
+                                                    <td>Khép kín</td>
+                                                    <td></td>
+                                                </tr>  <tr class="odd gradeX">
+                                                    <td>1</td>
+                                                    <td>P101</td>
+                                                    <td>1000.000</td>
+                                                    <td>20m2</td>
+                                                    <td>2</td>
+                                                    <td>  </td>
+                                                    <td>Khép kín</td>
+                                                    <td></td>
+                                                </tr>  <tr class="odd gradeX">
+                                                    <td>1</td>
+                                                    <td>P101</td>
+                                                    <td>1000.000</td>
+                                                    <td>20m2</td>
+                                                    <td>2</td>
+                                                    <td>  </td>
+                                                    <td>Khép kín</td>
+                                                    <td></td>
+                                                </tr>  <tr class="odd gradeX">
+                                                    <td>1</td>
+                                                    <td>P101</td>
+                                                    <td>1000.000</td>
+                                                    <td>20m2</td>
+                                                    <td>2</td>
+                                                    <td>  </td>
+                                                    <td>Khép kín</td>
+                                                    <td></td>
+                                                </tr>  <tr class="odd gradeX">
+                                                    <td>1</td>
+                                                    <td>P101</td>
+                                                    <td>1000.000</td>
+                                                    <td>20m2</td>
+                                                    <td>2</td>
+                                                    <td>  </td>
+                                                    <td>Khép kín</td>
+                                                    <td></td>
+                                                </tr>  <tr class="odd gradeX">
+                                                    <td>1</td>
+                                                    <td>P101</td>
+                                                    <td>1000.000</td>
+                                                    <td>20m2</td>
+                                                    <td>2</td>
+                                                    <td>  </td>
+                                                    <td>Khép kín</td>
+                                                    <td></td>
+                                                </tr>  <tr class="odd gradeX">
+                                                    <td>1</td>
+                                                    <td>P101</td>
+                                                    <td>1000.000</td>
+                                                    <td>20m2</td>
+                                                    <td>2</td>
+                                                    <td>  </td>
+                                                    <td>Khép kín</td>
+                                                    <td></td>
+                                                </tr>
+                                                </thead>
+                                            </tbody>
+                                        </table>
+                                        <!-- /.table-responsive -->
+                           <!--  <div class="well">
+                                
+                            </div> -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.col-lg-12 -->
+</div>
+
+</div>
+<!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
+</div>
+<!-- /#wrapper -->
+<!-- jQuery -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+<!-- DataTables JavaScript -->
+<script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+<script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="../dist/js/sb-admin-2.js"></script>
+
+<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+<script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+</script>
+</body>
+
+</html>
