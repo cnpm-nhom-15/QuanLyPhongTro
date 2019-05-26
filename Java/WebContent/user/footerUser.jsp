@@ -3,7 +3,7 @@
   <!-- Main Footer -->
   <footer class="main-footer">
     <div class="pull-center hidden-xs">
-     <strong>Copyright &copy; 2018 <a href="#">N10</a>.</strong> All rights reserved.
+     <strong>Copyright &copy; 2018 <a href="#">Nhóm 11</a>.</strong> All rights reserved.
     </div>
     
   </footer>

@@ -59,11 +59,12 @@ public class ThemUserServlet extends HttpServlet {
 
 			PrintWriter pw = response.getWriter();
 			if (KiemTra.kiemTraEmail(email) && userBO.themUser(new User(0, usName, pass, email, 1, 1))) {
-				pw.print("<script type='text/javascript'>alert('Thêm thành công');</script>");
+				request.setAttribute("thanhCong", "Thêm thành công");
 				RequestDispatcher rd = request.getRequestDispatcher("DanhSachUserServlet");
 				rd.include(request, response);
 			} else {
-				pw.print("<script type='text/javascript'>alert('Thất bại');</script>");
+
+				request.setAttribute("thatBai", "Thêm thất bại");
 				RequestDispatcher rd = request.getRequestDispatcher("admin/qlUser/themUser.jsp");
 				rd.include(request, response);
 			}

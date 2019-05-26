@@ -83,12 +83,15 @@ public class SuaKyLuatServlet extends HttpServlet {
 				kyLuatKhenThuong = new KyLuatKhenThuong(id, idSinhVien, nguyenNhan, ngayThang, hinhPhat);
 
 				if (kyLuatKhenThuongBO.suaKyLuatKhenThuong(kyLuatKhenThuong)) {
-					pw.print("<script type='text/javascript'>alert('Sửa thành công');</script>");
+
+					request.setAttribute("thanhCong", "Sửa thành công");
+
 					RequestDispatcher rd = request.getRequestDispatcher("DanhSachKyLuatServlet");
 					rd.include(request, response);
 					return;
 				} else {
-					pw.print("<script type='text/javascript'>alert('Có lỗi xảy ra');</script>");
+
+					request.setAttribute("thatBai", "Có lỗi xảy ra");
 					kyLuatKhenThuong = kyLuatKhenThuongBO.layKyLuatKhenThuong(id);
 				}
 

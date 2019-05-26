@@ -55,9 +55,11 @@ public class XoaHopDongServlet extends HttpServlet {
 		HopDongBO hopDongBO = new HopDongBO();
 		PrintWriter pw = response.getWriter();
 		if (hopDongBO.xoaHopDong(Integer.parseInt(str))) {
-			pw.print("<script type='text/javascript'>alert('Xóa thành công');</script>");
+			request.setAttribute("thanhCong", "Xoá thành công");
+
 		} else {
-			pw.print("<script type='text/javascript'>alert('Thất bại');</script>");
+
+			request.setAttribute("thatBai", "Xoá thất bại");
 		}
 		RequestDispatcher rd = request.getRequestDispatcher("DanhSachHopDongServlet");
 		rd.include(request, response);

@@ -15,7 +15,7 @@ public class TruongHocDAO {
 	public void moKetNoi() {
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=DMC_DaNang", "sa",
+			conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=QuanLyPhongTro", "sa",
 					"123456");
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

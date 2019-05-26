@@ -44,7 +44,7 @@ public class IndexServlet extends HttpServlet {
 //		request.setAttribute("dsPhongNam", phongBO.layHetPhongTheoGioiTinh(1));
 //		request.setAttribute("dsPhongTrong", phongBO.layHetPhongTrong());
 		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-		rd.forward(request, response);
+		rd.include(request, response);
 	}
 
 	/**

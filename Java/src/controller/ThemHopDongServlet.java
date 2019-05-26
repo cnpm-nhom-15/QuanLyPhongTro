@@ -77,12 +77,14 @@ public class ThemHopDongServlet extends HttpServlet {
 				themHDHopDong = new HopDong(0, idSinhVien, idPhong, ngayTao, ngayBatDau, ngayKetThuc);
 				System.out.println(themHDHopDong.toString());
 				if (hopDongBO.themHopDong(themHDHopDong)) {
-					pw.print("<script type='text/javascript'>alert('Thành công');</script>");
+					request.setAttribute("thanhCong", "Thêm thành công");
+
 					RequestDispatcher rd = request.getRequestDispatcher("DanhSachHopDongServlet");
 					rd.include(request, response);
 					return;
 				} else {
-					pw.print("<script type='text/javascript'>alert('Có lỗi xảy ra');</script>");
+
+					request.setAttribute("thatBai", "Thêm thất bại");
 				}
 
 			} catch (ParseException e) {

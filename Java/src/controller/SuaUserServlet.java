@@ -64,12 +64,12 @@ public class SuaUserServlet extends HttpServlet {
 			// System.out.println(new User(idu, usName, pass, email, 0, 0).toString());
 			if (KiemTra.kiemTraEmail(email) && KiemTra.kiemTraString(usName) && KiemTra.kiemTraString(pass)
 					&& userBO.suaUser(new User(idu, usName, pass, email, 1, 1))) {
-				pw.print("<script type='text/javascript'>alert('Thành công');</script>");
+				request.setAttribute("thanhCong", "Sửa thành công");
 				RequestDispatcher rd2 = request.getRequestDispatcher("DanhSachUserServlet");
 				rd2.include(request, response);
 				return;
 			} else {
-				pw.print("<script type='text/javascript'>alert('Có lỗi xảy ra');</script>");
+				request.setAttribute("thatBai", "Có lỗi xảy ra");
 				userSua = userBO.layUser(idu);
 			}
 

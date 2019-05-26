@@ -86,12 +86,12 @@ public class SuaHoaDonServlet extends HttpServlet {
 						chiSoCu, chiSoMoi, 0, 0, 0);
 
 				if (hoaDonBO.suaHoaDon(suaHDHoaDon)) {
-					pw.print("<script type='text/javascript'>alert('Sửa thành công');</script>");
+					request.setAttribute("thanhCong", "Sửa thành công");
 					RequestDispatcher rd = request.getRequestDispatcher("DanhSachHoaDonServlet");
 					rd.include(request, response);
 					return;
 				} else {
-					pw.print("<script type='text/javascript'>alert('Có lỗi xảy ra');</script>");
+					request.setAttribute("thatBai", "Có lỗi xảy ra");
 					suaHDHoaDon = hoaDonBO.layHoaDon(id);
 				}
 

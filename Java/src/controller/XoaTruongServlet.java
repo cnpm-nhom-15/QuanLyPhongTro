@@ -54,9 +54,11 @@ public class XoaTruongServlet extends HttpServlet {
 		TruongHocBO truongHocBO = new TruongHocBO();
 		PrintWriter pw = response.getWriter();
 		if (truongHocBO.xoaTruongHoc(Integer.parseInt(str))) {
-			pw.print("<script type='text/javascript'>alert('Xóa thành công');</script>");
+			request.setAttribute("thanhCong", "Xoá thành công");
+
 		} else {
-			pw.print("<script type='text/javascript'>alert('Thất bại');</script>");
+
+			request.setAttribute("thatBai", "Xoá thất bại");
 		}
 		RequestDispatcher rd = request.getRequestDispatcher("DanhSachTruongServlet");
 		rd.include(request, response);

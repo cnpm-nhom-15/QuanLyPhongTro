@@ -50,11 +50,12 @@ public class ThemTruongServlet extends HttpServlet {
 			response.sendRedirect("IndexServlet");
 			return;
 		}
-		if("themTruong".equals(request.getParameter("themTruong"))){
+		if ("themTruong".equals(request.getParameter("themTruong"))) {
 			RequestDispatcher rd = request.getRequestDispatcher("DanhSachTruongServlet");
 			rd.include(request, response);
 			return;
 		}
+		request.setAttribute("thatBai", "Đang hoàn thiện");
 		RequestDispatcher rd = request.getRequestDispatcher("admin/qlTruong/themTruong.jsp");
 		rd.include(request, response);
 	}

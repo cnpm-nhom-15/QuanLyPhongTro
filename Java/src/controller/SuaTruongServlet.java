@@ -49,11 +49,12 @@ public class SuaTruongServlet extends HttpServlet {
 			response.sendRedirect("IndexServlet");
 			return;
 		}
-		if("suaTruong".equals(request.getParameter("suaTruong"))){
+		if ("suaTruong".equals(request.getParameter("suaTruong"))) {
 			RequestDispatcher rd = request.getRequestDispatcher("DanhSachTruongServlet");
 			rd.include(request, response);
 			return;
 		}
+		request.setAttribute("thatBai", "Đang hoàn thiện");
 		RequestDispatcher rd = request.getRequestDispatcher("admin/qlTruong/suaTruong.jsp");
 		rd.include(request, response);
 	}

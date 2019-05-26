@@ -18,7 +18,7 @@ public class HoaDonDAO {
 	public void moKetNoi() {
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=DMC_DaNang", "sa",
+			conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=QuanLyPhongTro", "sa",
 					"123456");
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -111,7 +111,7 @@ public class HoaDonDAO {
 
 	public ArrayList<HoaDon> layHetHoaDon() {
 		ArrayList<HoaDon> hoaDons = new ArrayList<>();
-		String sql = "select * from HoaDon;";
+		String sql = "select * from HoaDon ORDER BY NgayLap DESC;";
 		try {
 			moKetNoi();
 			ResultSet rs = conn.createStatement().executeQuery(sql);

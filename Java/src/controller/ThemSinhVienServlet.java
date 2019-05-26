@@ -81,12 +81,14 @@ public class ThemSinhVienServlet extends HttpServlet {
 			}
 
 			if (svBO.themSinhVien(obj)) {
-				pw.print("<script type='text/javascript'>alert('Thành công');</script>");
+				request.setAttribute("thanhCong", "Thêm thành công");
+
 				RequestDispatcher rd = request.getRequestDispatcher("DanhSachSinhVienServlet");
 				rd.include(request, response);
 				return;
 			} else {
-				pw.print("<script type='text/javascript'>alert('Có lỗi xảy ra');</script>");
+
+				request.setAttribute("thatBai", "Thêm thất bại");
 			}
 		}
 		TruongHocBO thBO = new TruongHocBO();

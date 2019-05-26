@@ -15,7 +15,7 @@ public class UserDAO {
 	public void moKetNoi() {
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=DMC_DaNang", "sa",
+			conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=QuanLyPhongTro", "sa",
 					"123456");
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -129,12 +129,12 @@ public class UserDAO {
 	}
 
 	public static void main(String[] args) {
-		// UserDAO ud = new UserDAO();
-		// ArrayList<User> kk = ud.layDanhSach();
-		// for (User user : kk) {
-		// System.out.println(user);
-		// }
-		// System.out.println(ud.layUser("admin", "admin"));
+		UserDAO ud = new UserDAO();
+		ArrayList<User> kk = ud.layHetUser();
+		for (User user : kk) {
+			System.out.println(user);
+		}
+		System.out.println(ud.kiemTraUser("admin", "admin"));
 	}
 
 }

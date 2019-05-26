@@ -54,9 +54,11 @@ public class XoaNhanVienServlet extends HttpServlet {
 		NhanVienBO nhanVienBO = new NhanVienBO();
 		PrintWriter pw = response.getWriter();
 		if (nhanVienBO.xoaNhanVien(Integer.parseInt(str))) {
-			pw.print("<script type='text/javascript'>alert('Xóa thành công');</script>");
+			request.setAttribute("thanhCong", "Xoá thành công");
+
 		} else {
-			pw.print("<script type='text/javascript'>alert('Thất bại');</script>");
+
+			request.setAttribute("thatBai", "Xoá thất bại");
 		}
 		RequestDispatcher rd = request.getRequestDispatcher("DanhSachNhanVienServlet");
 		rd.include(request, response);

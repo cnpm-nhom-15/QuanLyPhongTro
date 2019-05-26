@@ -49,11 +49,12 @@ public class ThemNhanVienServlet extends HttpServlet {
 			response.sendRedirect("IndexServlet");
 			return;
 		}
-		if("themNV".equals(request.getParameter("themNV"))){
+		if ("themNV".equals(request.getParameter("themNV"))) {
 			RequestDispatcher rd = request.getRequestDispatcher("DanhSachNhanVienServlet");
 			rd.include(request, response);
 			return;
 		}
+		request.setAttribute("thatBai", "Đang hoàn thiện");
 		RequestDispatcher rd = request.getRequestDispatcher("admin/qlNhanVien/themNhanVien.jsp");
 		rd.include(request, response);
 	}

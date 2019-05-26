@@ -47,15 +47,16 @@ public class SuaNhanVienServlet extends HttpServlet {
 				return;
 			}
 		} else {
-			
+
 			response.sendRedirect("IndexServlet");
 			return;
 		}
-		if("suaNV".equals(request.getParameter("suaNV"))){
+		if ("suaNV".equals(request.getParameter("suaNV"))) {
 			RequestDispatcher rd = request.getRequestDispatcher("DanhSachNhanVienServlet");
 			rd.include(request, response);
 			return;
 		}
+		request.setAttribute("thatBai", "Đang hoàn thiện");
 		RequestDispatcher rd = request.getRequestDispatcher("admin/qlNhanVien/suaNhanVien.jsp");
 		rd.include(request, response);
 	}

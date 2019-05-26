@@ -81,12 +81,13 @@ public class SuaHopDongServlet extends HttpServlet {
 				Date ngayKetThuc = sp.parse(request.getParameter("ngayKetThuc"));
 				suaHDHopDong = new HopDong(id, idSinhVien, idPhong, ngayTao, ngayBatDau, ngayKetThuc);
 				if (hopDongBO.suaHopDong(suaHDHopDong)) {
-					pw.print("<script type='text/javascript'>alert('Sửa thành công');</script>");
+
+					request.setAttribute("thanhCong", "Sửa thành công");
 					RequestDispatcher rd = request.getRequestDispatcher("DanhSachHopDongServlet");
 					rd.include(request, response);
 					return;
 				} else {
-					pw.print("<script type='text/javascript'>alert('Có lỗi xảy ra');</script>");
+					request.setAttribute("thatBai", "Có lỗi xảy ra");
 					suaHDHopDong = hopDongBO.layHopDong(id);
 				}
 

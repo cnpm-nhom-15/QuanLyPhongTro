@@ -61,17 +61,16 @@ public class DoiMatKhauAdminServlet extends HttpServlet {
 				String reNewPass = request.getParameter("reNewPass");
 				PrintWriter pw = response.getWriter();
 				if (!newPass.equals(reNewPass)) {
-					pw.print(
-							"<script type='text/javascript'>alert('Thay đổi thất bại. Mật khẩu nhập lại phải trùng với mật khẩu mới');</script>");
+					request.setAttribute("thatBai", "Thay đổi thất bại. Mật khẩu nhập lại phải trùng với mật khẩu mới");
 					RequestDispatcher rd = request.getRequestDispatcher("admin/doiMatKhauAdmin.jsp");
 					rd.include(request, response);
 				} else {
 					user.setPassword(request.getParameter("newPass"));
 
 					if (userBO.suaUser(user)) {
-						pw.print("<script type='text/javascript'>alert('Sửa thành công');</script>");
+						request.setAttribute("thanhCong", "Thay đổi thành công.");
 					} else {
-						pw.print("<script type='text/javascript'>alert('Sửa thất bại');</script>");
+						request.setAttribute("thatBai", "Thay đổi thất bại.");
 					}
 					RequestDispatcher rd = request.getRequestDispatcher("ThongTinAdminServlet");
 					rd.include(request, response);
@@ -79,7 +78,7 @@ public class DoiMatKhauAdminServlet extends HttpServlet {
 
 			} else {
 				PrintWriter pw = response.getWriter();
-				pw.print("<script type='text/javascript'>alert('Mật khẩu không đúng');</script>");
+				request.setAttribute("thatBai", "Mật khẩu không đúng.");
 				RequestDispatcher rd = request.getRequestDispatcher("admin/doiMatKhauAdmin.jsp");
 				rd.include(request, response);
 			}

@@ -19,7 +19,7 @@ public class HopDongDAO {
 	public void moKetNoi() {
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=DMC_DaNang", "sa",
+			conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=QuanLyPhongTro", "sa",
 					"123456");
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -186,7 +186,7 @@ public class HopDongDAO {
 
 	public ArrayList<HopDong> layHetHopDong() {
 		ArrayList<HopDong> hopDongs = new ArrayList<>();
-		String sql = "select * from HopDong;";
+		String sql = "select * from HopDong ORDER BY NgayKetThuc DESC;";
 		try {
 			moKetNoi();
 			ResultSet rs = conn.createStatement().executeQuery(sql);
@@ -205,8 +205,9 @@ public class HopDongDAO {
 	public Hashtable<String, Integer> laySoLuong() {
 		Hashtable<String, Integer> dsHopDongTheoThang = new Hashtable<>();
 		moKetNoi();
-		String sql = "select top(12)  count(*) soLuong,YEAR(ngaytao) nam,MONTH(NgayTao) thang from HopDong\r\n"
-				+ "group by YEAR(NgayTao),MONTH(NgayTao)\r\n" + "order by nam desc,thang asc\r\n" + "";
+		String sql = "SELECT TOP ( 12 )\r\n" + "        COUNT(*) soLuong ,\r\n" + "        YEAR(NgayTao) nam ,\r\n"
+				+ "        MONTH(NgayTao) thang\r\n" + "FROM    HopDong\r\n" + "GROUP BY YEAR(NgayTao) ,\r\n"
+				+ "        MONTH(NgayTao)\r\n" + "ORDER BY nam DESC ,\r\n" + "        thang DESC";
 		try {
 			ResultSet rs = conn.createStatement().executeQuery(sql);
 			while (rs.next()) {

@@ -54,9 +54,11 @@ public class XoaPhongServlet extends HttpServlet {
 		PhongBO phongBO = new PhongBO();
 		PrintWriter pw = response.getWriter();
 		if (phongBO.xoaPhong(Integer.parseInt(str))) {
-			pw.print("<script type='text/javascript'>alert('Xóa thành công');</script>");
+			request.setAttribute("thanhCong", "Xoá thành công");
+
 		} else {
-			pw.print("<script type='text/javascript'>alert('Thất bại');</script>");
+
+			request.setAttribute("thatBai", "Xoá thất bại");
 		}
 		RequestDispatcher rd = request.getRequestDispatcher("DanhSachPhongServlet");
 		rd.include(request, response);

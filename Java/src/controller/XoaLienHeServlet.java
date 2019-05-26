@@ -54,9 +54,11 @@ public class XoaLienHeServlet extends HttpServlet {
 		LienHeBO lienHeBO = new LienHeBO();
 		PrintWriter pw = response.getWriter();
 		if (lienHeBO.xoaLienHe(Integer.parseInt(str))) {
-			pw.print("<script type='text/javascript'>alert('Xóa thành công');</script>");
+			request.setAttribute("thanhCong", "Xoá thành công");
+
 		} else {
-			pw.print("<script type='text/javascript'>alert('Thất bại');</script>");
+
+			request.setAttribute("thatBai", "Xoá thất bại");
 		}
 		RequestDispatcher rd = request.getRequestDispatcher("DanhSachLienHeServlet");
 		rd.include(request, response);

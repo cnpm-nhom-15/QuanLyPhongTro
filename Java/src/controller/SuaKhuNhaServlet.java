@@ -67,12 +67,12 @@ public class SuaKhuNhaServlet extends HttpServlet {
 			int idNhanVien = Integer.parseInt(request.getParameter("idNhanVien"));
 			suaKNkhuNha = new KhuNha(id, khuNha, idNhanVien);
 			if (khuNhaBO.suaKhuNha(suaKNkhuNha)) {
-				pw.print("<script type='text/javascript'>alert('Sửa thành công');</script>");
+				request.setAttribute("thanhCong", "Sửa thành công");
 				RequestDispatcher rd = request.getRequestDispatcher("DanhSachKhuNhaServlet");
 				rd.include(request, response);
 				return;
 			} else {
-				pw.print("<script type='text/javascript'>alert('Có lỗi xảy ra');</script>");
+				request.setAttribute("thatBai", "Có lỗi xảy ra");
 				suaKNkhuNha = khuNhaBO.layKhuNha(id);
 			}
 

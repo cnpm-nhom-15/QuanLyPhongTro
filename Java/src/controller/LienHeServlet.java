@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
@@ -10,10 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import model.bean.LienHe;
-import model.bean.User;
 import model.bo.LienHeBO;
 
 /**
@@ -43,40 +40,23 @@ public class LienHeServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
-		HttpSession hs = request.getSession();
-		User acc = (User) hs.getAttribute("user");
-		if (acc == null) {
-			response.sendRedirect("IndexServlet");
+
+		String hoTen = request.getParameter("hoTen");
+		String email = request.getParameter("email");
+		String chuDe = request.getParameter("chuDe");
+		String noiDung = request.getParameter("noiDung");
+		Date ngayGui = new Date();
+		LienHeBO lhBO = new LienHeBO();
+		LienHe lh = new LienHe(0, hoTen, email, chuDe, noiDung, ngayGui);
+		if (lhBO.themLienHe(lh)) {
+			request.setAttribute("thanhCong", "Thành công");
+			request.setAttribute("mess", "Gửi liên hệ thành công");
 		} else {
-			if (acc.getUserType() == 0) {
-				RequestDispatcher rd = request.getRequestDispatcher("404.jsp");
-				rd.include(request, response);
-			} else {
-				if ("guiLienHe".equals(request.getParameter("guiLienHe"))) {
-					System.out.println("ngon");
-					HttpSession ss = request.getSession();
-					User user = (User) ss.getAttribute("user");
-					String hoTen = request.getParameter("hoTen");
-					String email = user.getEmail();
-					String chuDe = request.getParameter("chuDe");
-					String noiDung = request.getParameter("noiDung");
-					Date ngayGui = new Date();
-					PrintWriter pw = response.getWriter();
-					LienHeBO lhBO = new LienHeBO();
-					LienHe lh = new LienHe(0, hoTen, email, chuDe, noiDung, ngayGui);
-					if (lhBO.themLienHe(lh)) {
-						pw.print("<script type='text/javascript'>alert('Thành công');</script>");
-						RequestDispatcher rd = request.getRequestDispatcher("ThongTinUserServlet");
-						rd.include(request, response);
-						return;
-					} else {
-						pw.print("<script type='text/javascript'>alert('Thất bại');</script>");
-					}
-				} 
-				RequestDispatcher rd = request.getRequestDispatcher("user/lienHe.jsp");
-				rd.include(request, response);
-			}
+			request.setAttribute("thatBai", "Thất bại");
+			request.setAttribute("mess", "Gửi liên hệ thất bại");
 		}
+		RequestDispatcher rd = request.getRequestDispatcher("IndexServlet");
+		rd.include(request, response);
 
 	}
 

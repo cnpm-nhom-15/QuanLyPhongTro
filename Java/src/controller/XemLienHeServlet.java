@@ -61,7 +61,7 @@ public class XemLienHeServlet extends HttpServlet {
 			rd.include(request, response);
 		} else {
 
-			pw.print("<script type='text/javascript'>alert('Có lỗi xảy ra');</script>");
+			request.setAttribute("thatBai", "Có lỗi xảy ra");
 			RequestDispatcher rd = request.getRequestDispatcher("DanhSachLienHeServlet");
 			rd.include(request, response);
 		}

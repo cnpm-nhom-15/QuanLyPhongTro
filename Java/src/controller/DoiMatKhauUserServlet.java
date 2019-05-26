@@ -19,68 +19,70 @@ import model.bo.UserBO;
 @WebServlet("/DoiMatKhauUserServlet")
 public class DoiMatKhauUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DoiMatKhauUserServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public DoiMatKhauUserServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html");
-		if("doimkUser".equals(request.getParameter("doimkUser"))){
+		if ("doimkUser".equals(request.getParameter("doimkUser"))) {
 			UserBO userBO = new UserBO();
 			int id = Integer.parseInt(request.getParameter("ID"));
 			User user = userBO.layUser(id);
-			if(userBO.kiemTraUser(request.getParameter("userName"), request.getParameter("oldPass"))!=null){
-				if(userBO.kiemTraUser(request.getParameter("userName"), request.getParameter("oldPass"))!=null){
+			if (userBO.kiemTraUser(request.getParameter("userName"), request.getParameter("oldPass")) != null) {
+				if (userBO.kiemTraUser(request.getParameter("userName"), request.getParameter("oldPass")) != null) {
 					String newPass = request.getParameter("newPass");
 					String reNewPass = request.getParameter("reNewPass");
 					PrintWriter pw = response.getWriter();
-					if(!newPass.equals(reNewPass)){
-						pw.print("<script type='text/javascript'>alert('Thay đổi thất bại. Mật khẩu nhập lại phải trùng với mật khẩu mới');</script>");
+					if (!newPass.equals(reNewPass)) {
+						request.setAttribute("thatBai",
+								"Thay đổi thất bại. Mật khẩu nhập lại phải trùng với mật khẩu mới");
 						RequestDispatcher rd = request.getRequestDispatcher("user/doiMatKhauUser.jsp");
 						rd.include(request, response);
-					}
-					else{
+					} else {
 						user.setPassword(request.getParameter("newPass"));
-						
-						if(userBO.suaUser(user)){
-							pw.print("<script type='text/javascript'>alert('Sửa thành công');</script>");
-						}
-						else{
-							pw.print("<script type='text/javascript'>alert('Sửa thất bại');</script>");
+
+						if (userBO.suaUser(user)) {
+							request.setAttribute("thanhCong", "Thay đổi thành công");
+						} else {
+							request.setAttribute("thatBai", "Thay đổi thất bại.");
 						}
 						RequestDispatcher rd = request.getRequestDispatcher("ThongTinUserServlet");
 						rd.include(request, response);
 					}
 				}
-				
-			}
-			else{
+
+			} else {
 				PrintWriter pw = response.getWriter();
-				pw.print("<script type='text/javascript'>alert('Mật khẩu không đúng');</script>");
+				request.setAttribute("thatBai", "Mật khẩu không đúng");
 				RequestDispatcher rd = request.getRequestDispatcher("user/doiMatKhauUser.jsp");
 				rd.include(request, response);
 			}
-		}else{
+		} else {
 			RequestDispatcher rd = request.getRequestDispatcher("user/doiMatKhauUser.jsp");
 			rd.include(request, response);
 		}
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

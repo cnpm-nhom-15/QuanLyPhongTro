@@ -60,7 +60,7 @@ public class ThemKyLuatServlet extends HttpServlet {
 		PrintWriter pw = response.getWriter();
 		KyLuatKhenThuongBO kyLuatKhenThuongBO = new KyLuatKhenThuongBO();
 		SinhVienBO sinhVienBO = new SinhVienBO();
-		ArrayList<SinhVien> themKLKTSinhVien = sinhVienBO.layHetSinhVien();
+		ArrayList<SinhVien> themKLKTSinhVien = sinhVienBO.layHetSinhVienDangThuePhong();
 		request.setAttribute("themKLKTSinhVien", themKLKTSinhVien);
 		KyLuatKhenThuong kyLuatKhenThuong = null;
 
@@ -76,12 +76,14 @@ public class ThemKyLuatServlet extends HttpServlet {
 				kyLuatKhenThuong = new KyLuatKhenThuong(0, idSinhVien, nguyenNhan, ngayThang, hinhPhat);
 
 				if (kyLuatKhenThuongBO.themKyLuatKhenThuong(kyLuatKhenThuong)) {
-					pw.print("<script type='text/javascript'>alert('Thành công');</script>");
+					request.setAttribute("thanhCong", "Thêm thành công");
+
 					RequestDispatcher rd = request.getRequestDispatcher("DanhSachKyLuatServlet");
 					rd.include(request, response);
 					return;
 				} else {
-					pw.print("<script type='text/javascript'>alert('Có lỗi xảy ra');</script>");
+
+					request.setAttribute("thatBai", "Thêm thất bại");
 				}
 
 			} catch (ParseException e) {

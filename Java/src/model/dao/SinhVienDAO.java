@@ -17,7 +17,7 @@ public class SinhVienDAO {
 	public void moKetNoi() {
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=DMC_DaNang", "sa",
+			conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=QuanLyPhongTro", "sa",
 					"123456");
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -138,6 +138,28 @@ public class SinhVienDAO {
 		ArrayList<SinhVien> sinhViens = new ArrayList<>();
 		String sql = String.format(
 				"select * from SinhVien where IDSV not in ( select IDSV from HopDong where NgayKetThuc>'%s');",
+				sp.format(d));
+		try {
+			moKetNoi();
+			ResultSet rs = conn.createStatement().executeQuery(sql);
+			while (rs.next()) {
+				sinhViens.add(new SinhVien(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4),
+						rs.getString(5), rs.getInt(6), rs.getDate(7), rs.getString(8), rs.getString(9)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			dongKetNoi();
+		}
+		return sinhViens;
+	}
+
+	public ArrayList<SinhVien> layHetSinhVienDangThuePhong() {
+		SimpleDateFormat sp = new SimpleDateFormat("MM/dd/yyyy");
+		Date d = new Date();
+		ArrayList<SinhVien> sinhViens = new ArrayList<>();
+		String sql = String.format(
+				"select * from SinhVien where IDSV in ( select IDSV from HopDong where NgayKetThuc>='%s');",
 				sp.format(d));
 		try {
 			moKetNoi();

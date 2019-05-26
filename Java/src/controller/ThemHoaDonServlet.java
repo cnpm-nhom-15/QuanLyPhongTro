@@ -82,12 +82,14 @@ public class ThemHoaDonServlet extends HttpServlet {
 			}
 
 			if (hoaDonBO.themHoaDon(obj)) {
-				pw.print("<script type='text/javascript'>alert('Thành công');</script>");
+				request.setAttribute("thanhCong", "Thêm thành công");
+
 				RequestDispatcher rd = request.getRequestDispatcher("DanhSachHoaDonServlet");
 				rd.include(request, response);
 				return;
 			} else {
-				pw.print("<script type='text/javascript'>alert('Có lỗi xảy ra');</script>");
+
+				request.setAttribute("thatBai", "Thêm thất bại");
 			}
 		}
 		KhuNhaBO khuNhaBO = new KhuNhaBO();

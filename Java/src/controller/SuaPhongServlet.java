@@ -67,12 +67,12 @@ public class SuaPhongServlet extends HttpServlet {
 			Phong obj = new Phong(idp, idKhuNha, soPhong, 0, soNguoiTD);
 			PrintWriter pw = response.getWriter();
 			if (phongBO.suaPhong(obj)) {
-				pw.print("<script type='text/javascript'>alert('Sửa thành công');</script>");
+				request.setAttribute("thanhCong", "Sửa thành công");
 				RequestDispatcher rd = request.getRequestDispatcher("DanhSachPhongServlet");
 				rd.include(request, response);
 				return;
 			} else {
-				pw.print("<script type='text/javascript'>alert('Thất bại');</script>");
+				request.setAttribute("thatBai", "Có lỗi xảy ra");
 				phong = phongBO.layPhong(idp);
 			}
 		}

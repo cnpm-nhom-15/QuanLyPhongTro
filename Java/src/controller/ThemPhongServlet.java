@@ -63,12 +63,14 @@ public class ThemPhongServlet extends HttpServlet {
 			Phong obj = new Phong(0, idKhuNha, soPhong, 0, soNguoiToiDa);
 			PrintWriter pw = response.getWriter();
 			if (phongBO.themPhong(obj)) {
-				pw.print("<script type='text/javascript'>alert('Thêm thành công');</script>");
+				request.setAttribute("thanhCong", "Thêm thành công");
+
 				RequestDispatcher rd = request.getRequestDispatcher("DanhSachPhongServlet");
 				rd.include(request, response);
 				return;
 			} else {
-				pw.print("<script type='text/javascript'>alert('Thất bại');</script>");
+
+				request.setAttribute("thatBai", "Thêm thất bại");
 
 			}
 		}

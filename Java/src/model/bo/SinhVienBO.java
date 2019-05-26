@@ -40,4 +40,8 @@ public class SinhVienBO {
 		return sinhVienDAO.layHetSinhVienChuaThuePhong();
 	}
 
+	public ArrayList<SinhVien> layHetSinhVienDangThuePhong() {
+		return sinhVienDAO.layHetSinhVienDangThuePhong();
+	}
+
 }

@@ -17,7 +17,7 @@ public class LienHeDAO {
 	public void moKetNoi() {
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=DMC_DaNang", "sa",
+			conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=QuanLyPhongTro", "sa",
 					"123456");
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -77,7 +77,7 @@ public class LienHeDAO {
 
 	public ArrayList<LienHe> layHetLienHe() {
 		ArrayList<LienHe> lienHes = new ArrayList<>();
-		String sql = "select * from LienHe";
+		String sql = "SELECT * FROM dbo.LienHe ORDER BY NgayGui DESC";
 		try {
 			moKetNoi();
 			ResultSet rs = conn.createStatement().executeQuery(sql);

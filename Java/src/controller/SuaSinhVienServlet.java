@@ -78,12 +78,12 @@ public class SuaSinhVienServlet extends HttpServlet {
 				String sDT = request.getParameter("soDT");
 				obj = new SinhVien(idSV, maSV, hoTen, maTruong, lop, gioiTinh, ngaySinh, soCMT, sDT);
 				if (svBO.suaSinhVien(obj)) {
-					pw.print("<script type='text/javascript'>alert('Thành công');</script>");
+					request.setAttribute("thanhCong", "Sửa thành công");
 					RequestDispatcher rd = request.getRequestDispatcher("DanhSachSinhVienServlet");
 					rd.include(request, response);
 					return;
 				} else {
-					pw.print("<script type='text/javascript'>alert('Có lỗi xảy ra');</script>");
+					request.setAttribute("thatBai", "Có lỗi xảy ra");
 					obj = svBO.laySinhVien(Integer.parseInt(request.getParameter("svID")));
 				}
 			} catch (ParseException e) {
