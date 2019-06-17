@@ -2,14 +2,13 @@
 echo auto update and commit to github by thanhkk 
 cd "curl"
 set GIT_PATH="C:\Program Files\Git\bin\git.exe"
-set BRANCH = "origin master"
 echo add...
-%GIT_PATH% add -A
+%GIT_PATH% add .
 echo commit...
-%GIT_PATH% commit -am "Committed on %date%"
+%GIT_PATH% commit -am "Commit on %date%"
 echo pull...
-%GIT_PATH% pull %BRANCH%
+%GIT_PATH% pull origin master
 echo push...
-%GIT_PATH% push %BRANCH%
+%GIT_PATH% push origin master
 call
 pause
