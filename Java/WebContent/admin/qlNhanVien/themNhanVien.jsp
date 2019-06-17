@@ -9,7 +9,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal">
+            <form class="form-horizontal" action="ThemNhanVienServlet">
               <div class="box-body">
                 
                 <div class="form-group">

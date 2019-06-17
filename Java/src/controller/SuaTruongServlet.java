@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.bean.TruongHoc;
 import model.bean.User;
+import model.bo.TruongHocBO;
 
 /**
  * Servlet implementation class SuaTruongServlet
@@ -49,12 +51,20 @@ public class SuaTruongServlet extends HttpServlet {
 			response.sendRedirect("IndexServlet");
 			return;
 		}
+		int idTruong = Integer.parseInt(request.getParameter("idTruong"));
+		TruongHocBO truongHocBO = new TruongHocBO();
+
 		if ("suaTruong".equals(request.getParameter("suaTruong"))) {
-			RequestDispatcher rd = request.getRequestDispatcher("DanhSachTruongServlet");
-			rd.include(request, response);
-			return;
+			String tenTruong = request.getParameter("schoolName");
+			String diaChi = request.getParameter("schoolAddress");
+			if (truongHocBO.suaTruongHoc(new TruongHoc(idTruong, tenTruong, diaChi))) {
+				request.setAttribute("thanhCong", "Sửa trường thành công");
+			} else {
+				request.setAttribute("thatBai", "Sửa trường thất bại");
+			}
 		}
-		request.setAttribute("thatBai", "Đang hoàn thiện");
+		TruongHoc truongHoc = truongHocBO.layTruongHoc(idTruong);
+		request.setAttribute("truongHoc", truongHoc);
 		RequestDispatcher rd = request.getRequestDispatcher("admin/qlTruong/suaTruong.jsp");
 		rd.include(request, response);
 	}

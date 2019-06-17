@@ -62,7 +62,7 @@ public class SuaKyLuatServlet extends HttpServlet {
 		PrintWriter pw = response.getWriter();
 		KyLuatKhenThuongBO kyLuatKhenThuongBO = new KyLuatKhenThuongBO();
 		SinhVienBO sinhVienBO = new SinhVienBO();
-		ArrayList<SinhVien> suaKLKTSinhVien = sinhVienBO.layHetSinhVien();
+		ArrayList<SinhVien> suaKLKTSinhVien = sinhVienBO.layHetSinhVienDangThuePhong();
 		request.setAttribute("suaKLKTSinhVien", suaKLKTSinhVien);
 		KyLuatKhenThuong kyLuatKhenThuong = null;
 		if (request.getParameter("idKyLuat") != null)

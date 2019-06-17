@@ -1,6 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,7 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.bean.NhanVien;
 import model.bean.User;
+import model.bo.NhanVienBO;
 
 /**
  * Servlet implementation class SuaNhanVienServler
@@ -51,12 +56,36 @@ public class SuaNhanVienServlet extends HttpServlet {
 			response.sendRedirect("IndexServlet");
 			return;
 		}
+		int idNhanVien = Integer.parseInt(request.getParameter("idNhanVien"));
+		NhanVienBO nhanVienBO = new NhanVienBO();
 		if ("suaNV".equals(request.getParameter("suaNV"))) {
-			RequestDispatcher rd = request.getRequestDispatcher("DanhSachNhanVienServlet");
-			rd.include(request, response);
-			return;
+			SimpleDateFormat sp = new SimpleDateFormat("yyyy-MM-dd");
+			String hoTenNV = request.getParameter("hoTenNV");
+			String diaChiNV = request.getParameter("diaChiNV");
+			String soDT = request.getParameter("soDT");
+			int gioiTinh = Integer.parseInt(request.getParameter("gioiTinh"));
+			Date ngaySinh = null;
+			try {
+				ngaySinh = sp.parse(request.getParameter("ngaySinh"));
+
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			String chucVu = request.getParameter("chucVu");
+			if (nhanVienBO.suaNhanVien(new NhanVien(idNhanVien, hoTenNV, diaChiNV, soDT, gioiTinh, ngaySinh, chucVu))) {
+				request.setAttribute("thanhCong", "Sửa nhân viên thành công");
+				RequestDispatcher rd = request.getRequestDispatcher("DanhSachNhanVienServlet");
+				rd.include(request, response);
+				return;
+			} else {
+				request.setAttribute("thatBai", "Sửa nhân viên thất bại");
+			}
+
 		}
-		request.setAttribute("thatBai", "Đang hoàn thiện");
+		NhanVien nhanVien = nhanVienBO.layNhanVien(idNhanVien);
+		System.out.println(nhanVien.toString());
+		request.setAttribute("nhanVien", nhanVien);
 		RequestDispatcher rd = request.getRequestDispatcher("admin/qlNhanVien/suaNhanVien.jsp");
 		rd.include(request, response);
 	}

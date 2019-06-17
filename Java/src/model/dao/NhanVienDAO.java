@@ -55,7 +55,7 @@ public class NhanVienDAO {
 		String chucVu = obj.getChucVu();
 		SimpleDateFormat sp = new SimpleDateFormat("MM/dd/yyyy");
 		String sql = String.format(
-				"UPDATE NhanVien SET HoTen = N'%s' ,DiaChi = '%s' ,SDT = '%s' ,GioiTinh = %s ,NgaySinh = '%s' ,ChucVu = N'%s' WHERE IDNV=%s;",
+				"UPDATE NhanVien SET HoTen = N'%s' ,DiaChi = N'%s' ,SDT = '%s' ,GioiTinh = %s ,NgaySinh = '%s' ,ChucVu = N'%s' WHERE IDNV=%s;",
 				hoTen, diaChi, sdt, gioiTinh, sp.format(ngaySinh), chucVu, id);
 
 		return xuLy(sql);

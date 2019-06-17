@@ -549,8 +549,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		<div class="copyright">
 			<div class="container">
-				<p>© 2018 Nhà khách - SV. All rights reserved | Design by
-					Team_11</p>
+				<p>© 2019 Nhà khách - SV. All rights reserved | Design by
+					Team_15</p>
 			</div>
 		</div>
 	</footer>

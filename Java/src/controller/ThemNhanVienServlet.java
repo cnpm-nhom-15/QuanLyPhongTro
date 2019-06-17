@@ -1,6 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,7 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.bean.NhanVien;
 import model.bean.User;
+import model.bo.NhanVienBO;
 
 /**
  * Servlet implementation class ThemNhanVienServlet
@@ -50,11 +55,29 @@ public class ThemNhanVienServlet extends HttpServlet {
 			return;
 		}
 		if ("themNV".equals(request.getParameter("themNV"))) {
-			RequestDispatcher rd = request.getRequestDispatcher("DanhSachNhanVienServlet");
-			rd.include(request, response);
-			return;
+			SimpleDateFormat sp = new SimpleDateFormat("yyyy-MM-dd");
+			String hoTenNV = request.getParameter("hoTenNV");
+			String diaChiNV = request.getParameter("diaChiNV");
+			String soDT = request.getParameter("soDT");
+			int gioiTinh = Integer.parseInt(request.getParameter("gioiTinh"));
+			Date ngaySinh = null;
+			try {
+				ngaySinh = sp.parse(request.getParameter("ngaySinh"));
+
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			String chucVu = request.getParameter("chucVu");
+			NhanVienBO nhanVienBO = new NhanVienBO();
+			if (nhanVienBO.themNhanVien(new NhanVien(0, hoTenNV, diaChiNV, soDT, gioiTinh, ngaySinh, chucVu))) {
+				request.setAttribute("thanhCong", "Thêm nhân viên thành công");
+
+			} else {
+				request.setAttribute("thatBai", "Thêm nhân viên thất bại");
+			}
+
 		}
-		request.setAttribute("thatBai", "Đang hoàn thiện");
 		RequestDispatcher rd = request.getRequestDispatcher("admin/qlNhanVien/themNhanVien.jsp");
 		rd.include(request, response);
 	}
